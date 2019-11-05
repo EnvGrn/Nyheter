@@ -1,5 +1,5 @@
 const NewsAPI = require('newsapi');
-const newsapi = new NewsAPI(apikey='40b0986f00de495f8940178e2898daff');
+const newsapi = new NewsAPI(apikey='d0da71cc328d49cfb36f68be1b27e174');
 var http = require('http');
 
 let data;
@@ -12,18 +12,18 @@ newsapi.v2.everything({
   q: 'technology',
   sources: 'bbc-news,the-verge',
   domains: 'bbc.co.uk, techcrunch.com',
-  from: '2019-09-25',
-  to: '2019-10-21',
+  from: '2019-11-04',
+  to: '2019-11-04',
   language: 'en',
   sortBy: 'relevancy',
   page: 2
 }).then(response => {
   console.log(response);
   data = response;
-  title = JSON.stringify(data.articles[0].title.toString());
-  author = JSON.stringify(data.articles[0].author.toString());
-  content = JSON.stringify(data.articles[0].content.toString());
-  image = JSON.stringify(data.articles[0].urlToImage.toString());
+  title = JSON.stringify(data.articles[0].title);
+  author = JSON.stringify(data.articles[0].author);
+  content = JSON.stringify(data.articles[0].content);
+  image = JSON.stringify(data.articles[0].urlToImage);
 });
 
 http.createServer(function (req, res){
@@ -41,4 +41,4 @@ http.createServer(function (req, res){
   res.write('</body>');
   res.write('</html>');
   res.end();
-}).listen(8080);
+}).listen(3000);
